@@ -1,5 +1,6 @@
 using Xunit;
 using SourceCode;
+using FluentAssertions;
 
 namespace Tests
 {
@@ -15,6 +16,21 @@ namespace Tests
         {
             var response = new BinaryGap().Solution(number);
             Assert.Equal(expectedResponse, response);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 3, 8, 9, 7, 6 }, 3, new int[] { 9, 7, 6, 3, 8 })]
+        [InlineData(new int[] { 0, 0, 0 }, 1, new int[] { 0, 0, 0 })]
+        [InlineData(new int[] { 1, 2, 3, 4 }, 4, new int[] { 1, 2, 3, 4 })]
+        [InlineData(new int[] { 1, 2, 3, 4 }, 1, new int[] { 4, 1, 2, 3 })]
+        [InlineData(new int[] { 1, 2, 3, 4 }, 5, new int[] { 4, 1, 2, 3 })]
+        public void ShouldReturnCiclCyclicRotationArray(int[] A, int K, int[] expectedResponse)
+        {
+            var response = new CyclicRotation().Solution(A, K);
+
+            response
+                .Should()
+                .BeEquivalentTo(expectedResponse);
         }
     }
 }

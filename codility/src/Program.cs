@@ -27,4 +27,28 @@ namespace SourceCode
 			return max;
 		}
     }
+
+	public class CyclicRotation
+    {
+		public int[] Solution(int[] A, int K)
+		{
+			var resultArray = new int[A.Length];
+
+            if (A.Length > 0)
+            {
+				int firstIterationK = K / A.Length;
+				firstIterationK = K - firstIterationK*A.Length;
+
+				for (int i = 0; i < A.Length; i++)
+				{
+					if (i + firstIterationK < A.Length)
+						resultArray[i + firstIterationK] = A[i];
+					else
+						resultArray[firstIterationK - (A.Length - i)] = A[i];
+				}
+			}
+
+			return resultArray;
+		}
+    }
 }
