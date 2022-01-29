@@ -177,4 +177,34 @@ namespace SourceCode
 			return pairs;
 		}
 	}
+
+	public class NumberOfDiscIntersections
+	{
+		public int Solution(int[] A)
+		{
+			// key=left-border, value = circle-indexes
+			var ranges = new Dictionary<int, HashSet<int>>();
+
+			// key= one-circle, value = other-circle
+			int intersections = 0;
+
+			for (int i = 0; i < A.Length; i++)
+            {
+				for (int j = i - A[i]; j < i + A[i]; j++)
+				{
+					if (ranges.ContainsKey(j))
+                    {
+						ranges[j].Add(i);
+						continue;
+					}
+					ranges.Add(j, new HashSet<int>() { i });
+				}
+			}
+
+			foreach (var item in ranges)
+				intersections += item.Value.Count/2;
+
+			return intersections;
+		}
+	}
 }
