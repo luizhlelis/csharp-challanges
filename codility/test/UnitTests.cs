@@ -91,5 +91,43 @@ namespace Tests
 
             Assert.Equal(10, response);
         }
+
+        [Theory]
+        [InlineData(5, new int[] { 1, 3, 1, 4, 2, 3, 5, 4 }, 6)]
+        [InlineData(1, new int[] { 1 }, 0)]
+        [InlineData(5, new int[] { 1 }, -1)]
+        public void FrogRiverOneTest(int X, int[] A, int expectedResponse)
+        {
+            var response = new FrogRiverOne().Solution(X, A);
+
+            Assert.Equal(expectedResponse, response);
+        }
+
+        [Fact]
+        public void ShouldReturn99999FrogRiverOneTest()
+        {
+            int[] A = new int[100000];
+
+            for (int i = 0; i < A.Length; i++)
+                A[i] = i + 1;
+
+            var response = new FrogRiverOne().Solution(100000, A);
+
+            Assert.Equal(99999, response);
+        }
+
+
+        [Fact]
+        public void ShouldReturn9FrogRiverOneTest()
+        {
+            int[] A = new int[100000];
+
+            for (int i = 0; i < A.Length; i++)
+                A[i] = i + 1;
+
+            var response = new FrogRiverOne().Solution(10, A);
+
+            Assert.Equal(9, response);
+        }
     }
 }

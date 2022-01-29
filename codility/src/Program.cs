@@ -99,4 +99,21 @@ namespace SourceCode
 			return A[A.Length-1]+1;
 		}
 	}
+
+	public class FrogRiverOne
+    {
+		public int Solution(int X, int[] A)
+        {
+			var positions = new HashSet<int>();
+
+			for (int i = 0; i < A.Length; i++)
+            {
+				positions.Add(A[i]);
+				if (positions.Count() == X) // that's because elements in array are less than or equal to X
+					return i;
+			}
+
+			return -1;
+        }
+	}
 }
