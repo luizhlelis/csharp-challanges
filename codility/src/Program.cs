@@ -208,4 +208,12 @@ namespace SourceCode
 			return 11;
 		}
 	}
+
+	public class Distinct
+    {
+		public int Solution(int[] A)
+        {
+			return A.Distinct().Count();
+        }
+	}
 }

@@ -168,5 +168,16 @@ namespace Tests
 
             Assert.Equal(expectedResponse, response);
         }
+
+        [Theory]
+        [InlineData(new int[] { 2, 1, 1, 2, 3, 1}, 3)]
+        [InlineData(new int[] { }, 0)]
+        [InlineData(new int[] { 1 }, 1)]
+        public void DistinctTest(int[] A, int expectedResponse)
+        {
+            var response = new Distinct().Solution(A);
+
+            Assert.Equal(expectedResponse, response);
+        }
     }
 }
