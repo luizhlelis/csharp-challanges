@@ -1,12 +1,12 @@
-﻿
-using System;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace SourceCode
 {
-    public class BinaryGap
-    {
-        public int Solution(int N)
-        {
+	public class BinaryGap
+	{
+		public int Solution(int N)
+		{
 			bool started = false;
 			int length = 0, max = 0;
 			for (uint i = 1; i <= N; i <<= 1)
@@ -26,16 +26,16 @@ namespace SourceCode
 			}
 			return max;
 		}
-    }
+	}
 
 	public class CyclicRotation
-    {
+	{
 		public int[] Solution(int[] A, int K)
 		{
 			var resultArray = new int[A.Length];
 
-            if (A.Length > 0)
-            {
+			if (A.Length > 0)
+			{
 				int firstIterationK = K % A.Length;
 
 				for (int i = 0; i < A.Length; i++)
@@ -49,5 +49,23 @@ namespace SourceCode
 
 			return resultArray;
 		}
-    }
+	}
+
+	public class OddOccurrencesInArray
+	{
+		public int Solution(int[] A)
+		{
+			var hash = new HashSet<int>();
+
+			for (int i = 0; i < A.Length; i++)
+            {
+				if (hash.Contains(A[i]))
+					hash.Remove(A[i]);
+				else
+					hash.Add(A[i]);
+			}
+
+			return hash.First();
+		}
+	}
 }
