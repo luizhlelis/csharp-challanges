@@ -53,5 +53,43 @@ namespace Tests
 
             Assert.Equal(expectedResponse, response);
         }
+
+        [Theory]
+        [InlineData(new int[] { 2, 3, 1, 5 }, 4)]
+        [InlineData(new int[] { 5, 4, 1, 2 }, 3)]
+        [InlineData(new int[] { }, 1)]
+        [InlineData(new int[] { 2 }, 1)]
+        [InlineData(new int[] { 1 }, 2)]
+        [InlineData(new int[] { 1, 3 }, 2)]
+        [InlineData(new int[] { 4, 3, 1, 2 }, 5)]
+        [InlineData(new int[] { 4, 3, 5, 2 }, 1)]
+        public void PermMissingElemTest(int[] A, int expectedResponse)
+        {
+            var response = new PermMissingElem().Solution(A);
+
+            Assert.Equal(expectedResponse, response);
+        }
+
+        [Fact]
+        public void ShouldReturn10PermMissingElemTest()
+        {
+            int[] A = new int[100000];
+
+            A[0] = 1;
+
+            for (int i = 1; i < A.Length; i++)
+            {
+                if (i == 9)
+                {
+                    A[i] = A[i - 1] + 2;
+                    continue;
+                }
+                A[i] = A[i-1] + 1;
+            }
+
+            var response = new PermMissingElem().Solution(A);
+
+            Assert.Equal(10, response);
+        }
     }
 }

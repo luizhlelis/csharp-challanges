@@ -79,4 +79,24 @@ namespace SourceCode
 			return (int)Math.Ceiling(minValue);
 		}
 	}
+
+	public class PermMissingElem
+    {
+		public int Solution(int[] A)
+        {
+            if (A.Length < 1)
+				return 1;
+
+			Array.Sort(A);
+
+			if (A[0] != 1)
+				return 1;
+
+			for (int i = 0; i < A.Length - 1; i++)
+				if (A[i + 1] - A[i] > 1)
+					return A[i] + 1;
+
+			return A[A.Length-1]+1;
+		}
+	}
 }
