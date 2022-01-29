@@ -36,8 +36,7 @@ namespace SourceCode
 
             if (A.Length > 0)
             {
-				int firstIterationK = K / A.Length;
-				firstIterationK = K - firstIterationK*A.Length;
+				int firstIterationK = K % A.Length;
 
 				for (int i = 0; i < A.Length; i++)
 				{
