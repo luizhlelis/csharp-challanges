@@ -4,6 +4,33 @@ using System.Linq;
 
 namespace SourceCode
 {
+	public static class Utils
+    {
+		// O(n)
+		public static int[] GetPrefixSum (this int[] A)
+        {
+			var prefixSum = new int[A.Length];
+			prefixSum[0] = A[0];
+
+			for (int i = 1; i < A.Length; i++)
+				prefixSum[i] = A[i] + A[i - 1];
+
+			return prefixSum;
+		}
+
+		// O(n)
+		public static int[] GetSufixSum(this int[] A)
+		{
+			var sufixSum = new int[A.Length];
+			sufixSum[A.Length - 1] = A[A.Length - 1];
+
+			for (int i = A.Length - 2; i > -1; i--)
+				sufixSum[i] = A[i] + A[i + 1];
+
+			return sufixSum;
+		}
+	}
+
 	public class BinaryGap
 	{
 		public int Solution(int N)
@@ -115,5 +142,39 @@ namespace SourceCode
 
 			return -1;
         }
+	}
+
+	// O(n)
+	public class PassingCars
+    {
+		public int Solution(int[] A)
+        {
+			var goingToEast = new HashSet<int>();
+			int pairs = 0;
+
+			var prefixSum = new int[A.Length];
+
+			prefixSum[0] = A[0];
+            if (A[0] == 0)
+				goingToEast.Add(0);
+
+			for (int i = 1; i < A.Length; i++)
+            {
+                if (A[i] == 0)
+					goingToEast.Add(i);
+
+				prefixSum[i] = A[i] + prefixSum[i - 1];
+			}
+
+            foreach (var carToEastPosition in goingToEast)
+            {
+				if (pairs > 1e9)
+					return -1;
+
+				pairs += prefixSum[prefixSum.Length - 1] - prefixSum[carToEastPosition];
+			}
+
+			return pairs;
+		}
 	}
 }

@@ -129,5 +129,34 @@ namespace Tests
 
             Assert.Equal(9, response);
         }
+
+        [Theory]
+        [InlineData(new int[] { 0, 1, 0, 1, 1 }, 5)]
+        [InlineData(new int[] { 0 }, 0)]
+        [InlineData(new int[] { 1, 1, 1, 0, 0 }, 0)]
+        public void PassingCarsTest(int[] A, int expectedResponse)
+        {
+            var response = new PassingCars().Solution(A);
+
+            Assert.Equal(expectedResponse, response);
+        }
+
+        [Fact]
+        public void ShouldReturnMinusOnePassingCars()
+        {
+            int[] A = new int[100000];
+
+            for (int i = 0; i < A.Length; i++)
+            {
+                if (i < 50000)
+                    A[i] = 0;
+                else
+                    A[i] = 1;
+            }
+
+            var response = new PassingCars().Solution(A);
+
+            Assert.Equal(-1, response);
+        }
     }
 }
