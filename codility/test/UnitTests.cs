@@ -38,9 +38,18 @@ namespace Tests
         [InlineData(new int[] { 9, 3, 9, 3, 7, 7, 7 }, 7)]
         [InlineData(new int[] { 7, 7, 7, 7, 7, 7, 7 }, 7)]
         [InlineData(new int[] { 7, 7, 1, 1, 1, 1, 1 }, 1)]
-        public void OddOccurrencesInArray(int[] A, int expectedResponse)
+        public void OddOccurrencesInArrayTest(int[] A, int expectedResponse)
         {
             var response = new OddOccurrencesInArray().Solution(A);
+
+            Assert.Equal(expectedResponse, response);
+        }
+
+        [Theory]
+        [InlineData(10, 85, 30, 3)]
+        public void FrogJmpTest(int X, int Y, int D, int expectedResponse)
+        {
+            var response = new FrogJmp().Solution(X, Y, D);
 
             Assert.Equal(expectedResponse, response);
         }

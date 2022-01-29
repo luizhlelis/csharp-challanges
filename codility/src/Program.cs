@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SourceCode
@@ -66,6 +67,16 @@ namespace SourceCode
 			}
 
 			return hash.First();
+		}
+	}
+
+	public class FrogJmp
+    {
+		public int Solution(int X, int Y, int D)
+        {
+			var minValue = (double)(Y - X) / D;
+
+			return (int)Math.Ceiling(minValue);
 		}
 	}
 }
