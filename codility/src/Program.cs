@@ -64,6 +64,23 @@ namespace SourceCode
 
 			return count;
 		}
+
+		// Binary Euclidean algorithm (greatest common divisor)
+		public static double Gcd(double a, double b, double res)
+        {
+			if (a == b)
+				return res * a;
+			else if ((a % 2 == 0) && (b % 2 == 0))
+				return Gcd(Math.Floor(a/2), Math.Floor(b/2), 2 * res);
+			else if (a % 2 == 0)
+				return Gcd(Math.Floor(a / 2), b, res);
+			else if (b % 2 == 0)
+				return Gcd(a, Math.Floor(b / 2), res);
+			else if (a > b)
+				return Gcd(a - b, b, res);
+			else
+				return Gcd(a, b - a, res);
+		}
 	}
 
 	public class BinaryGap
