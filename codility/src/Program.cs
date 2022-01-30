@@ -81,6 +81,30 @@ namespace SourceCode
 			else
 				return Gcd(a, b - a, res);
 		}
+
+		// Bynary Search
+		public static int BinarySearch(int[] A, int x)
+        {
+			var n = A.Length;
+			var beg = 0;
+			var end = n - 1;
+			var result = -1;
+			int mid;
+
+			while (beg <= end)
+            {
+				mid = (beg + end) / 2;
+				if (A[mid] <= x)
+				{
+					beg = mid + 1;
+					result = mid;
+				}
+				else
+					end = mid - 1;
+			};
+
+			return result;
+		}
 	}
 
 	public class BinaryGap
