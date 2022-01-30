@@ -29,6 +29,41 @@ namespace SourceCode
 
 			return sufixSum;
 		}
+
+		public static int GetPrimesSieve()
+        {
+			const int MAX = 1000000;
+
+			bool[] primes = new bool[MAX + 1];
+			for (int i = 0; i < primes.Length; i++)
+			{
+				primes[i] = true;
+			}
+
+			for (int i = 2; i < Math.Sqrt(MAX) + 1; i++)
+			{
+				if (primes[i - 1])
+				{
+					for (int j = (int)Math.Pow(i, 2); j <= MAX; j += i)
+					{
+						primes[j - 1] = false;
+					}
+				}
+			}
+
+			int count = 0;
+			for (int i = 2; i < primes.Length; i++)
+			{
+				if (primes[i - 1])
+				{
+					// Primes could be printed below
+					//Console.WriteLine(i);
+					count++;
+				}
+			}
+
+			return count;
+		}
 	}
 
 	public class BinaryGap
