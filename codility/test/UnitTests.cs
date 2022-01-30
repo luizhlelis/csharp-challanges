@@ -181,6 +181,18 @@ namespace Tests
         }
 
         [Theory]
+        [InlineData(new int[] { 10, 2, 5, 1, 8, 20 }, 1)]
+        [InlineData(new int[] { 10, 50, 5, 1 }, 0)]
+        [InlineData(new int[] { 1 }, 0)]
+        [InlineData(new int[] { }, 0)]
+        public void TriangleTest(int[] A, int expectedResponse)
+        {
+            var response = new Triangle().Solution(A);
+
+            Assert.Equal(expectedResponse, response);
+        }
+
+        [Theory]
         [InlineData("{[()()]}", 1)]
         [InlineData("([)()]", 0)]
         [InlineData("}()[]", 0)]

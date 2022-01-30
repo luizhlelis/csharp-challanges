@@ -240,4 +240,56 @@ namespace SourceCode
 			return 0;
 		}
 	}
+
+	public class Brackets
+	{
+		public int Solution(string S)
+		{
+			var curlyBraces = new Stack<char>();
+			var parenthesis = new Stack<char>();
+			var brackets = new Stack<char>();
+			char character, lastCharacter;
+
+			for (int i = 0; i < S.Length; i++)
+            {
+                character = S[i];
+
+                if (character == '{')
+                {
+					if (parenthesis.Any() || brackets.Any()) return 0;
+					curlyBraces.Push('{');
+				}
+				else if (character == '}')
+                {
+					if (!curlyBraces.Any()) return 0;
+					lastCharacter = curlyBraces.Pop();
+					if (lastCharacter != '{') return 0;
+				}
+				else if (character == '(')
+					parenthesis.Push('(');
+				else if (character == ')')
+				{
+					if (!parenthesis.Any()) return 0;
+					lastCharacter = parenthesis.Pop();
+					if (lastCharacter != '(') return 0;
+				}
+				else if (character == '[')
+                {
+					if (parenthesis.Any()) return 0;
+					brackets.Push('[');
+				}
+				else if (character == ']')
+				{
+					if (!brackets.Any()) return 0;
+					lastCharacter = brackets.Pop();
+					if (lastCharacter != '[') return 0;
+				}
+			}
+
+			if (curlyBraces.Any() || parenthesis.Any() || brackets.Any())
+				return 0;
+
+			return 1;
+		}
+	}
 }
