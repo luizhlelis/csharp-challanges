@@ -179,5 +179,21 @@ namespace Tests
 
             Assert.Equal(expectedResponse, response);
         }
+
+        [Theory]
+        [InlineData("{[()()]}", 1)]
+        [InlineData("([)()]", 0)]
+        [InlineData("}()[]", 0)]
+        [InlineData("{{[[]]}}", 1)]
+        [InlineData("([(())])", 0)]
+        [InlineData("(dsadasd)", 1)]
+        [InlineData("(", 0)]
+        [InlineData("", 1)]
+        public void BracketsTest(string S, int expectedResponse)
+        {
+            var response = new Brackets().Solution(S);
+
+            Assert.Equal(expectedResponse, response);
+        }
     }
 }

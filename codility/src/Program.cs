@@ -216,4 +216,28 @@ namespace SourceCode
 			return A.Distinct().Count();
         }
 	}
+
+	public class Triangle
+    {
+		public int Solution(int[] A)
+		{
+			int a_p, a_q, a_r;
+
+			if (A.Length > 2)
+            {
+				Array.Sort(A);
+				for (int i = 0; i < A.Length - 2; i++)
+				{
+					a_p = A[i];
+					a_q = A[i + 1];
+					a_r = A[i + 2];
+
+					if (((a_p + a_q) > a_r) && ((a_q + a_r) > a_p) && ((a_r + a_p) > a_q))
+						return 1;
+				}
+			}
+
+			return 0;
+		}
+	}
 }
