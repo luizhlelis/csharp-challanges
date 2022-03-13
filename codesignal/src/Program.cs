@@ -51,4 +51,26 @@ namespace SourceCode
             return largestProduct;
         }
     }
+
+    public class ShapeArea
+    {
+        public int Solution(int n)
+        {
+            // Get the nth odd number
+            var xn = 2 * n - 1;
+
+            // mid squares
+            var area = xn;
+
+            xn = xn - 2;
+
+            while (xn > 0)
+            {
+                area = area + xn + xn; // upper and down squares
+                xn = xn - 2;
+            }
+
+            return area;
+        }
+    }
 }

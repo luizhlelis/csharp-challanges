@@ -38,5 +38,17 @@ namespace test
 
             Assert.Equal(expectedResponse, response);
         }
+
+        [Theory]
+        [InlineData(1, 1)]
+        [InlineData(2, 5)]
+        [InlineData(3, 13)]
+        [InlineData(4, 25)]
+        public void ShapeAreaTest(int n, int expectedResponse)
+        {
+            var response = new ShapeArea().Solution(n);
+
+            Assert.Equal(expectedResponse, response);
+        }
     }
 }
