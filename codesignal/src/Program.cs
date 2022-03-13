@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Linq;
 
 namespace SourceCode
 {
@@ -30,6 +31,24 @@ namespace SourceCode
                 backwardWord.Append(inputString[i]);
 
             return inputString.Equals(backwardWord.ToString());
+        }
+    }
+
+    public class AdjancentElementsProduct
+    {
+        public int Solution(int[] inputArray)
+        {
+            var largestProduct = int.MinValue;
+            var current = 0;
+
+            for (int i = 0; i < inputArray.Length - 1; i++)
+            {
+                current = inputArray[i] * inputArray[i + 1];
+                if (largestProduct < current)
+                    largestProduct = current;
+            }
+
+            return largestProduct;
         }
     }
 }

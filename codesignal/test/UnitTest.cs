@@ -27,5 +27,16 @@ namespace test
 
             Assert.Equal(expectedResponse, response);
         }
+
+        [Theory]
+        [InlineData(new int[] {3, 6, -2, -5, 7, 3}, 21)]
+        [InlineData(new int[] { 3, 3 }, 9)]
+        [InlineData(new int[] { -1000, +1000 }, -1000000)]
+        public void AdjancentElementsProductTest(int[] input, int expectedResponse)
+        {
+            var response = new AdjancentElementsProduct().Solution(input);
+
+            Assert.Equal(expectedResponse, response);
+        }
     }
 }
