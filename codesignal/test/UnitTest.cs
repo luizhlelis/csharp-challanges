@@ -50,5 +50,17 @@ namespace test
 
             Assert.Equal(expectedResponse, response);
         }
+
+        [Theory]
+        [InlineData(new int[] { 6, 2, 3, 8 }, 3)]
+        [InlineData(new int[] { 1 }, 0)]
+        [InlineData(new int[] { 10 }, 0)]
+        [InlineData(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 }, 1)]
+        public void MakeArrayConsecutiveTest(int[] input, int expectedResponse)
+        {
+            var response = new MakeArrayConsecutive().Solution(input);
+
+            Assert.Equal(expectedResponse, response);
+        }
     }
 }

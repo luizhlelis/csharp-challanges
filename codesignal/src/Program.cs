@@ -59,4 +59,25 @@ namespace SourceCode
             return (int) (Math.Pow(n, 2) + Math.Pow(n - 1, 2));
         }
     }
+
+    public class MakeArrayConsecutive
+    {
+        public int Solution(int[] statues)
+        {
+            var count = 0;
+            var diffBetweenConsecutive = 0;
+            Array.Sort(statues);
+
+            if (statues.Length == 1)
+                return 0;
+
+            for (int i = 0; i < statues.Length - 1; i++)
+            {
+                diffBetweenConsecutive = statues[i + 1] - statues[i];
+                if (diffBetweenConsecutive > 1)
+                    count = diffBetweenConsecutive - 1 + count;
+            }
+            return count;
+        }
+    }
 }
