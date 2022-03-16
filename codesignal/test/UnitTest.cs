@@ -62,5 +62,23 @@ namespace test
 
             Assert.Equal(expectedResponse, response);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 3, 2, 1 }, false)]
+        [InlineData(new int[] { 1, 3, 2}, true)]
+        [InlineData(new int[] { 1, 2, 1, 2 }, false)]
+        [InlineData(new int[] { 1, 1, 1, 2, 3 }, false)]
+        [InlineData(new int[] { 1, 1, 2, 3, 4, 4 }, false)]
+        [InlineData(new int[] { 1, 4, 10, 4, 2 }, false)]
+        [InlineData(new int[] { 10, 1, 2, 3, 4, 5 }, true)]
+        [InlineData(new int[] { 0, -2, 5, 6 }, true)]
+        [InlineData(new int[] { 1, 2, 3, 4, 3, 6 }, true)]
+        [InlineData(new int[] { 3, 5, 67, 98, 3 }, true)]
+        public void AlmostIncreasingSequenceTest(int[] input, bool expectedResponse)
+        {
+            var response = new AlmostIncreasingSequence().Solution(input);
+
+            Assert.Equal(expectedResponse, response);
+        }
     }
 }

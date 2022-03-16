@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace SourceCode
 {
@@ -78,6 +79,54 @@ namespace SourceCode
                     count = diffBetweenConsecutive - 1 + count;
             }
             return count;
+        }
+    }
+
+    public class AlmostIncreasingSequence
+    {
+        public bool Solution(int[] sequence)
+        {
+            var alreadyRemoved = false;
+            var newList = new List<int> {};
+
+            for (var i = 0; i < sequence.Length - 1; i++)
+            {
+                if (sequence[i] >= sequence[i + 1])
+                {
+                    if (alreadyRemoved == true)
+                        return false;
+
+                    alreadyRemoved = true;
+
+                    if (i == 0)
+                    {
+                        newList.AddRange(sequence.Skip(i + 1));
+                        break;
+                    }
+                    else if (i + 1 == sequence.Length - 1)
+                        return true;
+
+                    if (sequence[i-1] < sequence[i+1])
+                        newList.AddRange(sequence.Skip(i + 1));
+                    else if (i + 2 < sequence.Length && sequence[i] < sequence[i+2])
+                        newList.AddRange(sequence.Skip(i + 2));
+                    else
+                        return false;
+
+                    break;
+                }
+            }
+
+            if (!alreadyRemoved)
+                return true;
+
+            for (var i = 0; i < newList.Count - 1; i++)
+            {
+                if (newList[i] >= newList[i + 1])
+                    return false;
+            }
+
+            return true;
         }
     }
 }
