@@ -129,4 +129,27 @@ namespace SourceCode
             return true;
         }
     }
+
+    public class MatrixElementsSum
+    {
+        public int Solution(int[][] matrix)
+        {
+            List<int> columnNotSum = new List<int>();
+            int totalSum = 0;
+
+            for (int i = 0; i < matrix.Length; i++)
+            {
+                for (int j = 0; j < matrix[0].Length; j++)
+                {
+                    if (!columnNotSum.Contains(j))
+                        totalSum += matrix[i][j];
+
+                    if (matrix[i][j] == 0)
+                        columnNotSum.Add(j);
+                }
+            }
+
+            return totalSum;
+        }
+    }
 }

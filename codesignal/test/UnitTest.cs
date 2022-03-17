@@ -80,5 +80,15 @@ namespace test
 
             Assert.Equal(expectedResponse, response);
         }
+
+        [Fact]
+        public void MatrixElementsSumTest()
+        {
+            var input = new int[][] { new int[]{ 0, 1, 1, 2 }, new int[] { 0, 5, 0, 0 }, new int[] { 2, 0, 3, 3 } };
+            var expectedResponse = 9;
+            var response = new MatrixElementsSum().Solution(input);
+
+            Assert.Equal(expectedResponse, response);
+        }
     }
 }
